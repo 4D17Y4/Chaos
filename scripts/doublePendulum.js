@@ -1,7 +1,7 @@
 // physics
 const suspensionx = innerWidth / 2;
 const suspensiony = innerHeight / 2;
-const gravity = 0.1;
+const gravity = 0.2;
 const mass = 2;
 const length = 150;
 const damping = 0.9999;
@@ -21,6 +21,7 @@ class DoublePendulum {
     mass2,
     color
   ) {
+    this.tilt = randomTilt ? Math.random() * 2 * Math.PI : 0 ;
     this.length1 = length1;
     this.length2 = length2;
     this.angle1 = angle1;
@@ -104,7 +105,7 @@ class DoublePendulum {
     this.angle1 = ((this.angle1 * 2 * Math.PI) % 360) / (2 * Math.PI);
     this.alpha2 = ((this.angle2 * 2 * Math.PI) % 360) / (2 * Math.PI);
 
-    this.bob1.update(suspensionx, suspensiony, this.angle1);
-    this.bob2.update(this.bob1.x, this.bob1.y, this.angle2);
+    this.bob1.update(suspensionx, suspensiony,this.tilt + this.angle1);
+    this.bob2.update(this.bob1.x, this.bob1.y,this.tilt+ this.angle2);
   }
 }
