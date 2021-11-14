@@ -15,7 +15,6 @@ const noOfPendulums = 10;
 
 class Bob {
   constructor(susx, susy, length, angle, radius, color, hasTrail) {
-    randomTilt ? (this.tilt = (Math.random() * Math.PI) / 2) : (this.tilt = 0);
     this.x = susx + length * Math.sin(angle);
     this.y = susy + length * Math.cos(angle);
     this.radius = radius;
@@ -68,8 +67,8 @@ class Bob {
     this.susx = susx;
     this.susy = susy;
     this.angle = newangle;
-    this.x = susx + this.length * Math.sin(this.tilt + newangle);
-    this.y = susy + this.length * Math.cos(this.tilt + newangle);
+    this.x = susx + this.length * Math.sin(newangle);
+    this.y = susy + this.length * Math.cos(newangle);
     this.trail.push([this.x, this.y]);
     if (this.trail.length > 40) {
       this.trail.shift();
