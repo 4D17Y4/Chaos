@@ -1,23 +1,26 @@
 // add on click listerner to night
 var dark = true;
-document
-  .querySelector('.theme input[type="checkbox"]')
-  .addEventListener("click", function (e) {
-    if (dark) {
-      console.log("dark enabled");
-      document.body.className = "";
-    } else {
-      console.log("light enabled");
-      document.body.className = "dark-theme";
-    }
-    dark = !dark;
-  });
+var themeButton = document.getElementById("theme");
+themeButton.addEventListener("click", function (e) {
+  if (dark) {
+    document.body.className = "";
+    themeButton.innerHTML = "Dark";
+  } else {
+    document.body.className = "dark";
+    themeButton.innerHTML = "Light";
+  }
+  dark = !dark;
+});
 
-document
-  .querySelector('.show input[type="checkbox"]')
-  .addEventListener("click", function (e) {
-    drawAll = !drawAll;
-  });
+var show = document.getElementById("show");
+show.addEventListener("click", function (e) {
+  if (!drawAll) {
+    show.innerHTML = "Hide";
+  } else {
+    show.innerHTML = "Show";
+  }
+  drawAll = !drawAll;
+});
 
 function getRandomColor() {
   var letters = "0123456789ABCDEF";
@@ -44,8 +47,6 @@ function addDoublePenulum() {
   doublePendulum.push(dp);
 }
 
-var lastTime;
-
 // update the bobs
 function update() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -56,7 +57,10 @@ function update() {
       doublePendulum[i].update();
     }
   }
-  requestAnimationFrame(update);
+  // call update again after 1 sec
+  setTimeout(update, 1000 / div);
+
+  // requestAnimationFrame(update);
 }
 
 for (let i = 0; i < noOfPendulums; i++) {
