@@ -1,16 +1,5 @@
 // add on click listerner to night
 var dark = true;
-var themeButton = document.getElementById("theme");
-themeButton.addEventListener("click", function (e) {
-  if (dark) {
-    document.body.className = "";
-    themeButton.innerHTML = "Dark";
-  } else {
-    document.body.className = "dark";
-    themeButton.innerHTML = "Light";
-  }
-  dark = !dark;
-});
 
 var show = document.getElementById("show");
 show.addEventListener("click", function (e) {
@@ -20,6 +9,25 @@ show.addEventListener("click", function (e) {
     show.innerHTML = "Show";
   }
   drawAll = !drawAll;
+});
+
+var themeButton = document.getElementById("theme");
+themeButton.addEventListener("click", function (e) {
+  var githubButton = document.getElementById("github");
+  if (dark) {
+    document.body.className = "";
+    themeButton.className = "btn btn-outline-primary";
+    githubButton.className = "btn btn-outline-primary";
+    show.className = "btn btn-outline-primary";
+    themeButton.innerHTML = "Dark";
+  } else {
+    document.body.className = "dark";
+    show.className = "btn btn-outline-warning";
+    githubButton.className = "btn btn-outline-warning";
+    themeButton.className = "btn btn-outline-warning";
+    themeButton.innerHTML = "Light";
+  }
+  dark = !dark;
 });
 
 function getRandomColor() {
